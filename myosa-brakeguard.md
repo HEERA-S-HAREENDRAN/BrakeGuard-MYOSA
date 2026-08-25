@@ -32,7 +32,7 @@ The project demonstrates a low-cost approach to condition-based brake-fluid moni
 ### Videos
 
 <!-- Add the project demonstration video here once available. -->
-## Features (Detailed)
+## Features 
 
 ### 1. Continuous Brake-Fluid Health Sensing
 
