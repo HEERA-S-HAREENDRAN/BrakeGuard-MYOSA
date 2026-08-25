@@ -23,3 +23,12 @@ BrakeGuard addresses this gap by converting brake-fluid condition into a continu
 Instead of reporting moisture content alone, BrakeGuard combines these measurements and evaluates them against experimentally established thresholds to generate a Brake Fade Risk Index. The resulting status is presented locally through the MYOSA OLED and can also be transmitted for remote monitoring and trend analysis.
 
 The project demonstrates a low-cost approach to condition-based brake-fluid monitoring, bringing together capacitive sensing, sensor fusion, edge processing, and IoT telemetry to make a normally invisible maintenance concern measurable and actionable.
+## Demo / Examples
+
+### Images
+
+<!-- Add project images here once the final prototype and testing results are available. -->
+
+### Videos
+
+<!-- Add the project demonstration video here once available. -->
