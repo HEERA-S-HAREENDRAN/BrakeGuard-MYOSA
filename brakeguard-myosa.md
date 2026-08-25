@@ -32,3 +32,60 @@ The project demonstrates a low-cost approach to condition-based brake-fluid moni
 ### Videos
 
 <!-- Add the project demonstration video here once available. -->
+## Features (Detailed)
+
+### 1. Continuous Brake-Fluid Health Sensing
+
+BrakeGuard uses a custom parallel-plate capacitive sensing unit to monitor changes in brake-fluid condition. Two conductive plates form the sensing element, with the brake fluid occupying the controlled gap between them.
+
+As the dielectric properties of the fluid change with increasing moisture content, the effective capacitance of the sensing unit changes. This electrical variation provides the primary sensing signal used by BrakeGuard.
+
+### 2. RC-Based Capacitance Measurement
+
+The sensing unit is interfaced with the ESP32 through an RC charge-time measurement circuit. Instead of requiring a dedicated capacitance-measurement IC, the system measures how quickly the sensing circuit charges towards a defined voltage level.
+
+The charging behaviour of the RC circuit follows:
+
+V(t) = VCC × (1 − e^(−t/RC))
+
+where R is the known resistance and C represents the effective capacitance of the sensing unit.
+
+As the capacitance changes, the charging time also changes. The ESP32 measures this time and uses the resulting electrical response as the sensing signal for brake-fluid condition.
+
+### 3. Experimental Calibration
+
+The raw capacitive response is not directly treated as a moisture percentage. BrakeGuard establishes a calibration relationship by measuring the sensing unit under controlled reference conditions.
+
+The measured electrical response is mapped against known reference states to determine the usable operating range and condition thresholds. This experimental approach also allows factors such as probe geometry, fluid type, temperature, and other practical effects to be evaluated during calibration.
+
+### 4. Braking-Aware Condition Monitoring
+
+Brake-fluid condition becomes particularly important when the braking system is subjected to repeated or severe braking. BrakeGuard therefore uses the MPU6050 to detect significant deceleration events.
+
+The acceleration signal is filtered and compared against experimentally selected thresholds. Braking events are then tracked over a defined time window, allowing both braking severity and braking frequency to contribute to the system's assessment.
+
+This provides operational context that a standalone moisture sensor cannot provide.
+
+### 5. Brake Fade Risk Index
+
+BrakeGuard combines the measured brake-fluid condition with braking behaviour to produce a single Brake Fade Risk Index.
+
+The current risk model combines three normalised parameters:
+
+R = Wm × Sm + Wd × Sd + Wf × Sf
+
+where R is the Brake Fade Risk Index, Sm represents the moisture-condition score, Sd represents deceleration severity, Sf represents braking frequency, and Wm, Wd, and Wf are their respective weights.
+
+Multiple thresholds classify the resulting index into different operating states. This converts several raw sensor measurements into a simple, actionable indication of increasing brake-fluid-related risk.
+
+### 6. Real-Time Edge Feedback
+
+The sensing, filtering, and risk-assessment pipeline runs locally on the ESP32. The MYOSA OLED provides immediate feedback by displaying the current BrakeGuard status and selected sensor information.
+
+The core safety indication therefore does not depend on a computer, cloud service, or continuous internet connection.
+
+### 7. IoT Telemetry and Condition Tracking
+BrakeGuard can transmit sensor readings, braking data, risk index, and system status over Wi-Fi using MQTT. This enables remote monitoring and long-term tracking of brake-fluid condition, supporting a shift from periodic inspection towards condition-based maintenance.
+
+
+This creates the foundation for moving from periodic inspection towards condition-based maintenance, where changes in brake-fluid condition can be observed over time rather than only during scheduled servicing.
