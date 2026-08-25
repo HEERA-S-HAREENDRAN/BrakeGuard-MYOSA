@@ -89,3 +89,14 @@ BrakeGuard can transmit sensor readings, braking data, risk index, and system st
 
 
 This creates the foundation for moving from periodic inspection towards condition-based maintenance, where changes in brake-fluid condition can be observed over time rather than only during scheduled servicing.
+## Usage Instructions
+
+<!-- Final operating and testing procedure will be added after hardware validation. -->
+
+## Tech Stack
+
+<!-- Final hardware, firmware, communication, and software stack will be added after the implementation is finalised. -->
+
+## Requirements / Installation
+
+<!-- Final hardware requirements, libraries, firmware setup, and installation procedure will be added after implementation is finalised. -->
